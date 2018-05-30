@@ -47,7 +47,6 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
             }
 
             Canvas canvas = holder.lockCanvas();
-
             canvas.drawBitmap(background, 0,0, null);
             passaro.desenhaNo(canvas);
             passaro.cai();
