@@ -10,6 +10,7 @@ import android.view.SurfaceView;
 import android.view.View;
 
 import br.com.alura.flappy_bird.R;
+import br.com.alura.flappybird.elements.Cano;
 import br.com.alura.flappybird.elements.Passaro;
 import br.com.alura.flappybird.graphic.Tela;
 
@@ -20,8 +21,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     private Passaro passaro;
     private Bitmap background;
     private Tela tela;
-
-
+    private Cano cano;
 
 
     public Game(Context context) {
@@ -33,6 +33,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
 
     private void inicializaElementos() {
         passaro = new Passaro();
+        cano = new Cano(tela, 600);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bk_frame);
         background = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), tela.getAltura(), false);
     }
@@ -46,9 +47,12 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
             }
 
             Canvas canvas = holder.lockCanvas();
+
             canvas.drawBitmap(background, 0,0, null);
             passaro.desenhaNo(canvas);
             passaro.cai();
+            cano.desenhaNo(canvas);
+
             holder.unlockCanvasAndPost(canvas);
 
         }
