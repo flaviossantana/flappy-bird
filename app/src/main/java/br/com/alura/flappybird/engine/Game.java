@@ -33,6 +33,7 @@ public class Game extends SurfaceView implements Runnable {
 
             Canvas canvas = holder.lockCanvas();
             passaro.desenhaNo(canvas);
+            passaro.cai();
             holder.unlockCanvasAndPost(canvas);
 
         }
