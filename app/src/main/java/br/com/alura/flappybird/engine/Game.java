@@ -22,6 +22,8 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
     private Tela tela;
 
 
+
+
     public Game(Context context) {
         super(context);
         tela = new Tela(context);
