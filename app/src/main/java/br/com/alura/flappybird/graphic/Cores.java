@@ -6,7 +6,7 @@ public class Cores {
 
     public static Paint getCorDoPassaro() {
         Paint paint = new Paint();
-        paint.setColor(0x007FFF);
+        paint.setColor(0xFFF1C232);
         return paint;
     }
 }
