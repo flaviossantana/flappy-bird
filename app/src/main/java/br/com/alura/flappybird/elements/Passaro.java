@@ -24,4 +24,7 @@ public class Passaro {
         this.altura += 5;
     }
 
+    public void pula() {
+        this.altura -= 100;
+    }
 }

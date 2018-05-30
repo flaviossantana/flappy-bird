@@ -4,14 +4,16 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
 import br.com.alura.flappy_bird.R;
 import br.com.alura.flappybird.elements.Passaro;
 import br.com.alura.flappybird.graphic.Tela;
 
-public class Game extends SurfaceView implements Runnable {
+public class Game extends SurfaceView implements Runnable, View.OnTouchListener {
 
     private boolean isRunning = true;
     private final SurfaceHolder holder = getHolder();
@@ -24,6 +26,7 @@ public class Game extends SurfaceView implements Runnable {
         super(context);
         tela = new Tela(context);
         inicializaElementos();
+        setOnTouchListener(this);
     }
 
     private void inicializaElementos() {
@@ -55,5 +58,11 @@ public class Game extends SurfaceView implements Runnable {
 
     public void inicia() {
         isRunning = true;
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        passaro.pula();
+        return false;
     }
 }
