@@ -28,4 +28,12 @@ public class Cores {
         pontuacao.setShadowLayer(3,5,5,0xFF000000);
         return pontuacao;
     }
+
+    public static Paint getCorGameOver() {
+        Paint gameOver = getPaint(0xFFFF0000);
+        gameOver.setTextSize(100);
+        gameOver.setTypeface(Typeface.DEFAULT_BOLD);
+        gameOver.setShadowLayer(2,3,3,0xFF000000);
+        return gameOver;
+    }
 }

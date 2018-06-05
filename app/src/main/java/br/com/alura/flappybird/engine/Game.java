@@ -12,6 +12,7 @@ import android.view.View;
 import br.com.alura.flappy_bird.R;
 import br.com.alura.flappybird.elements.Cano;
 import br.com.alura.flappybird.elements.Canos;
+import br.com.alura.flappybird.elements.GameOver;
 import br.com.alura.flappybird.elements.Passaro;
 import br.com.alura.flappybird.elements.Pontuacao;
 import br.com.alura.flappybird.graphic.Tela;
@@ -61,6 +62,11 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
             passaro.desenhaNo(canvas);
             passaro.cai();
             pontuacao.desenhaNo(canvas);
+
+            if(new VerificadorDeColisao(passaro, canos).temColisao()){
+                new GameOver(tela).desenhaNo(canvas);
+                pausa();
+            }
 
             holder.unlockCanvasAndPost(canvas);
 

@@ -11,7 +11,7 @@ public class Pontuacao {
     private int pontos = 0;
 
     public void desenhaNo(Canvas canvas) {
-        canvas.drawText(String.valueOf(pontos), 100, 150, getCorDaPontuacao());
+        canvas.drawText(String.valueOf(pontos), 50, 150, getCorDaPontuacao());
     }
 
     public void aumenta() {

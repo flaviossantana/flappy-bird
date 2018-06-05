@@ -8,11 +8,11 @@ import br.com.alura.flappybird.graphic.Tela;
 
 public class Passaro {
 
-    public static final float RAIO = 75;
-    public static final  float x = 100;
-    public static final Paint COR = Cores.getCorDoPassaro();
-    private final Tela tela;
     private float altura;
+    private final Tela tela;
+    public static final  float X = 100;
+    public static final float RAIO = 75;
+    public static final Paint COR = Cores.getCorDoPassaro();
 
     public Passaro(Tela tela) {
         this.altura = 100;
@@ -20,7 +20,7 @@ public class Passaro {
     }
 
     public void desenhaNo(Canvas canvas){
-        canvas.drawCircle(x, altura, RAIO, COR);
+        canvas.drawCircle(X, altura, RAIO, COR);
     }
 
     public void cai() {
@@ -34,5 +34,9 @@ public class Passaro {
         if(altura - RAIO > 0){
             this.altura -= 100;
         }
+    }
+
+    public float getAltura() {
+        return altura;
     }
 }
