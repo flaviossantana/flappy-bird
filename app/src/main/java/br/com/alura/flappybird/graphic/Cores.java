@@ -1,6 +1,7 @@
 package br.com.alura.flappybird.graphic;
 
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 
 public class Cores {
@@ -20,4 +21,11 @@ public class Cores {
         return getPaint(0xFF80b3ff);
     }
 
+    public static Paint getCorDaPontuacao() {
+        Paint pontuacao = getPaint(0xFFffffff);
+        pontuacao.setTextSize(100);
+        pontuacao.setTypeface(Typeface.DEFAULT_BOLD);
+        pontuacao.setShadowLayer(3,5,5,0xFF000000);
+        return pontuacao;
+    }
 }

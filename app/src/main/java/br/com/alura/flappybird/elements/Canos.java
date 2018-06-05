@@ -17,8 +17,10 @@ public class Canos {
     private Tela tela;
 
     int posicao = 400;
+    private Pontuacao pontuacao;
 
-    public Canos(Tela tela) {
+    public Canos(Tela tela, Pontuacao pontuacao) {
+        this.pontuacao = pontuacao;
         for(int i = 0; i< QUANTIDADE_DE_CANOS; i++) {
             posicao += DISTANCIA_ENTRE_CANOS;
             this.tela = tela;
@@ -41,11 +43,11 @@ public class Canos {
             cano.move();
 
             if(cano.saiuDaTela()){
+                pontuacao.aumenta();
                 iterator.remove();
                 iterator.add(new Cano(tela, getMaximo() + DISTANCIA_ENTRE_CANOS));
             }
         }
-
     }
 
     private int getMaximo() {
