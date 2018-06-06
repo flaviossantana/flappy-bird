@@ -29,7 +29,7 @@ public class Passaro {
     }
 
     public void desenhaNo(Canvas canvas){
-        //canvas.drawCircle(X, altura, RAIO, COR);
+        canvas.drawCircle(X, altura, RAIO, COR);
         canvas.drawBitmap(this.passaro, X - RAIO, altura - RAIO, null);
     }
 

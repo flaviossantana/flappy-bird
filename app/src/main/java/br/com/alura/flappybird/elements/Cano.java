@@ -1,29 +1,40 @@
 package br.com.alura.flappybird.elements;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
 
 import javax.security.auth.login.LoginException;
 
+import br.com.alura.flappy_bird.R;
 import br.com.alura.flappybird.graphic.Cores;
 import br.com.alura.flappybird.graphic.Tela;
 
 public class Cano {
 
-    private static final float ALTURA_DO_CANO = 450;
-    private static final float LARGURA_DO_CANO = 200;
+    private static final int ALTURA_DO_CANO = 450;
+    private static final int LARGURA_DO_CANO = 200;
     public static final Paint COR = Cores.getCorDoCano();
-    private final float alturaDoCanoinferior;
-    private float alturaDoCanoSuperior;
+    private final int alturaDoCanoinferior;
+    private final Bitmap canoSuperior;
+    private int alturaDoCanoSuperior;
     private Tela tela;
     private int posicao;
+    private final Bitmap canoInferior;
 
-    public Cano(Tela tela, int posicao) {
+    public Cano(Tela tela, int posicao, Context context) {
         this.tela = tela;
         this.posicao = posicao;
         alturaDoCanoinferior = tela.getAltura() - ALTURA_DO_CANO - valorAleatorio();
         alturaDoCanoSuperior = 0 + ALTURA_DO_CANO + valorAleatorio();
+
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.cano);
+        canoInferior = Bitmap.createScaledBitmap(bitmap, LARGURA_DO_CANO, this.alturaDoCanoinferior, false);
+        canoSuperior = Bitmap.createScaledBitmap(bitmap, LARGURA_DO_CANO, this.alturaDoCanoSuperior, false);
+
     }
 
     public void desenhaNo(Canvas canvas){
@@ -36,11 +47,11 @@ public class Cano {
     }
 
     private void desenhaCanoInferior(Canvas canvas) {
-        canvas.drawRect(posicao, alturaDoCanoinferior, posicao + LARGURA_DO_CANO, tela.getAltura(), COR);
+        canvas.drawBitmap(canoInferior, posicao, alturaDoCanoinferior, null);
     }
 
     private void desenhaCanoSuperior(Canvas canvas) {
-        canvas.drawRect(posicao, 0, posicao + LARGURA_DO_CANO, alturaDoCanoSuperior, COR);
+        canvas.drawBitmap(canoSuperior, posicao, 0, null);
     }
 
     public void move() {
@@ -56,14 +67,10 @@ public class Cano {
     }
 
     public boolean temColisaoHorizontalCom(Passaro passaro) {
-        Log.i("####HORIZDADOS", String.valueOf(posicao) +", "+ String.valueOf(passaro.X) +", " + String.valueOf(passaro.RAIO));
-        Log.i("####HORIZONTAL", String.valueOf(posicao - passaro.X) +" < "+ passaro.RAIO +" = "+ String.valueOf(posicao - passaro.X < passaro.RAIO));
         return this.posicao - passaro.X < passaro.RAIO;
     }
 
     public boolean temColisaoVerticalCom(Passaro passaro) {
-        Log.i("#####DADOSVER", String.valueOf(passaro.getAltura()) +" - "+ String.valueOf(passaro.RAIO)+ " < " +String.valueOf(alturaDoCanoSuperior) + " || " + String.valueOf(passaro.getAltura()) + " + " + String.valueOf(passaro.RAIO) +" > "+ String.valueOf(alturaDoCanoinferior));
-        Log.i("#####VERTICAL", String.valueOf(passaro.getAltura() - passaro.RAIO < alturaDoCanoSuperior) +" || "+ String.valueOf(passaro.getAltura() + passaro.RAIO > alturaDoCanoinferior));
         return ((passaro.getAltura() - passaro.RAIO) < this.alturaDoCanoSuperior) || ((passaro.getAltura() + passaro.RAIO) > this.alturaDoCanoinferior);
     }
 }

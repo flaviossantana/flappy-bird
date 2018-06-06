@@ -1,5 +1,6 @@
 package br.com.alura.flappybird.elements;
 
+import android.content.Context;
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
@@ -18,13 +19,15 @@ public class Canos {
 
     int posicao = 600;
     private Pontuacao pontuacao;
+    private Context context;
 
-    public Canos(Tela tela, Pontuacao pontuacao) {
+    public Canos(Tela tela, Pontuacao pontuacao, Context context) {
         this.pontuacao = pontuacao;
+        this.context = context;
         for(int i = 0; i< QUANTIDADE_DE_CANOS; i++) {
             posicao += DISTANCIA_ENTRE_CANOS;
             this.tela = tela;
-            canos.add(new Cano(this.tela, posicao));
+            canos.add(new Cano(this.tela, posicao, context));
         }
     }
 
@@ -45,7 +48,7 @@ public class Canos {
             if(cano.saiuDaTela()){
                 pontuacao.aumenta();
                 iterator.remove();
-                iterator.add(new Cano(tela, getMaximo() + DISTANCIA_ENTRE_CANOS));
+                iterator.add(new Cano(tela, getMaximo() + DISTANCIA_ENTRE_CANOS, context));
             }
         }
     }
