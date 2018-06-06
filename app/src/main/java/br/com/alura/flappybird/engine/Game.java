@@ -19,6 +19,7 @@ import br.com.alura.flappybird.graphic.Tela;
 
 public class Game extends SurfaceView implements Runnable, View.OnTouchListener {
 
+    private final Som som;
     private boolean isRunning = true;
     private final SurfaceHolder holder = getHolder();
     private Passaro passaro;
@@ -30,14 +31,15 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener 
 
     public Game(Context context) {
         super(context);
-        tela = new Tela(context);
+        this.tela = new Tela(context);
+        this.som = new Som(context);
         inicializaElementos();
         setOnTouchListener(this);
     }
 
     private void inicializaElementos() {
         pontuacao = new Pontuacao();
-        passaro = new Passaro(tela, getContext());
+        passaro = new Passaro(tela, getContext(), som);
         canos = new Canos(tela, pontuacao, getContext());
         criarBackground();
     }
