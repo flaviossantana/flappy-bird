@@ -2,6 +2,9 @@ package br.com.alura.flappybird.elements;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
+
+import javax.security.auth.login.LoginException;
 
 import br.com.alura.flappybird.graphic.Cores;
 import br.com.alura.flappybird.graphic.Tela;
@@ -29,7 +32,7 @@ public class Cano {
     }
 
     public int valorAleatorio(){
-        return (int) (Math.random() * 400);
+        return (int) (Math.random() * 300);
     }
 
     private void desenhaCanoInferior(Canvas canvas) {
@@ -53,10 +56,14 @@ public class Cano {
     }
 
     public boolean temColisaoHorizontalCom(Passaro passaro) {
-        return posicao - passaro.X < passaro.RAIO;
+        Log.i("####HORIZDADOS", String.valueOf(posicao) +", "+ String.valueOf(passaro.X) +", " + String.valueOf(passaro.RAIO));
+        Log.i("####HORIZONTAL", String.valueOf(posicao - passaro.X) +" < "+ passaro.RAIO +" = "+ String.valueOf(posicao - passaro.X < passaro.RAIO));
+        return this.posicao - passaro.X < passaro.RAIO;
     }
 
     public boolean temColisaoVerticalCom(Passaro passaro) {
-        return passaro.getAltura() - passaro.RAIO < alturaDoCanoSuperior || passaro.getAltura() + passaro.RAIO > alturaDoCanoinferior;
+        Log.i("#####DADOSVER", String.valueOf(passaro.getAltura()) +" - "+ String.valueOf(passaro.RAIO)+ " < " +String.valueOf(alturaDoCanoSuperior) + " || " + String.valueOf(passaro.getAltura()) + " + " + String.valueOf(passaro.RAIO) +" > "+ String.valueOf(alturaDoCanoinferior));
+        Log.i("#####VERTICAL", String.valueOf(passaro.getAltura() - passaro.RAIO < alturaDoCanoSuperior) +" || "+ String.valueOf(passaro.getAltura() + passaro.RAIO > alturaDoCanoinferior));
+        return ((passaro.getAltura() - passaro.RAIO) < this.alturaDoCanoSuperior) || ((passaro.getAltura() + passaro.RAIO) > this.alturaDoCanoinferior);
     }
 }

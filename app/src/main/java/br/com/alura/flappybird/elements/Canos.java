@@ -16,7 +16,7 @@ public class Canos {
     private final List<Cano> canos = new ArrayList<>();
     private Tela tela;
 
-    int posicao = 400;
+    int posicao = 600;
     private Pontuacao pontuacao;
 
     public Canos(Tela tela, Pontuacao pontuacao) {
@@ -60,7 +60,9 @@ public class Canos {
 
     public boolean temColisaoCom(Passaro passaro) {
         for (Cano cano: canos) {
-            return cano.temColisaoHorizontalCom(passaro) && cano.temColisaoVerticalCom(passaro);
+            if(cano.temColisaoHorizontalCom(passaro) && cano.temColisaoVerticalCom(passaro)){
+                return true;
+            }
         }
         return false;
     }

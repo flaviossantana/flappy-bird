@@ -11,7 +11,7 @@ public class GameOver {
 
     private Tela tela;
     private Paint corGameOver = Cores.getCorGameOver();;
-    private String TEXTO_GAME_OVER = "Você Perdeu!";;
+    private String TEXTO_GAME_OVER = "Você Perdeu!";
 
     public GameOver(Tela tela) {
         this.tela = tela;
